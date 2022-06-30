@@ -24,12 +24,5 @@ task :console do
 end
 
 
-desc "push and build"
-task :pbuild do 
-  puts "Pushing to Github ...."
-  git push origin main
 
-  puts "Migrating in Heroku"
 
-  heroku run rake db:migrate
-end
