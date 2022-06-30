@@ -22,3 +22,14 @@ task :console do
   ActiveRecord::Base.logger = Logger.new(STDOUT)
   Pry.start
 end
+
+
+desc "push and build"
+task :pbuild do 
+  puts "Pushing to Github ...."
+  git push origin main
+
+  puts "Migrating in Heroku"
+
+  heroku run rake db:migrate
+end
