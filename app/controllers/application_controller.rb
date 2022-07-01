@@ -2,8 +2,37 @@ class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
   # Add your routes here
-  get "/" do
-    { message: "Good luck with your project!" }.to_json
+  post "/signup" do
+    user = User.find_by(email: params[:email])
+    if user
+
+      status 401 
+      {errors: "user already exist ,login in"}.to_json
+
+    else
+
+      user = User.create(
+        first_name: params[:first_name],
+        last_name: params[:last_name],
+        email: params[:email],
+        phonenumber: params[:phonenumber],
+        password: params[:password]
+      )
+        status 200
+      
+    end
+    user.to_json
+
+    
   end
+
+  get "login" do 
+    user = User.find_by(
+      email: params[:email],
+      password: params[:password]
+
+    )
+    user.to__json
+  end 
 
 end
