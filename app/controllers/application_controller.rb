@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
     
   end
 
-  get "login" do 
+  get "/login" do 
     user = User.find_by(
       email: params[:email],
       password: params[:password]
@@ -34,5 +34,10 @@ class ApplicationController < Sinatra::Base
     )
     user.to__json
   end 
+
+  get '/shop' do 
+    product = Product.all
+    product.to_json
+  end
 
 end
