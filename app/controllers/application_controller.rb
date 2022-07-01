@@ -35,6 +35,19 @@ class ApplicationController < Sinatra::Base
     user.to__json
   end 
 
+  post '/category' do
+    category = Category.create(
+      category_title: params[:category_title],
+      total_products: params[:total_products]
+    )
+    category.to_json
+  end
+
+  get '/category' do
+    category = Category.all
+    category.to_json
+  end
+
   get '/shop' do 
     product = Product.all
     product.to_json
